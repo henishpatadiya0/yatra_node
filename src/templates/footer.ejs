@@ -1,0 +1,50 @@
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted mt-3">
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+  >
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span></span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+  </section>
+
+  <section class="">
+    <div class="container-fluid text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <% for(i=0; i<data.articles.length; i++) {
+        if(data.articles[i].attributes.block_id.data.attributes.Name==="footer")
+        { %>
+        <div class="col-md-6 col-lg-6 col-xl-3 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <%= data.articles[i].attributes.Heading %>
+          </h6>
+          <% for(j=0; j<data.links.length; j++) {
+          if(data.links[j].attributes.article_id.data.attributes.Heading ===
+          data.articles[i].attributes.Heading) { %>
+          <a href="<%= data.links[j].attributes.Link %>">
+            <%= data.links[j].attributes.Name %>&nbsp;
+          </a>
+          | &nbsp; <% } } %>
+        </div>
+        <% } } %>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+    Copyright © 2023
+    <span class="text-reset fw-bold">
+      Yatra Online Limited, India. All rights reserved
+    </span>
+  </div>
+</footer>
+<!-- Footer -->

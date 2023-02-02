@@ -1,0 +1,128 @@
+<div class="row">
+  <% for(let i=0; i<data.images.length; i++) {
+  if(data.images[i].attributes.block_id.data.attributes.Name==='banner_image' )
+  { %>
+  <img
+    src="http://localhost:1337<%= data.images[i].attributes.image.data[0].attributes.url %>"
+    alt=""
+  />
+  <% } } %>
+</div>
+<h1>Dubai Visa online</h1>
+<div class="row mt-3">
+  <div class="col-md-8 col-lg-8 col-xl-4 mb-3" style="display: flex;
+  flex-wrap: wrap;">
+    <% for(let i=0; i < data.visaCard.length; i++) { if
+    (data.visaCard[i].attributes.block_id.data.attributes.Name==="visa_package")
+    { %>
+    <div class="col-sm-5 m-2">
+      <div class="card">
+        <h5 class="card-header">
+          <%= data.visaCard[i].attributes.visa_type.data.attributes.Name %>
+        </h5>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= data.visaCard[i].attributes.Duration %>
+            <span>₹<%= data.visaCard[i].attributes.Price %>*</span>
+          </h5>
+          <p class="card-text"><%- data.visaCard[i].attributes.Content %></p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
+    <% } } %>
+  </div>
+  <div class="col-md-4 col-lg-4 col-xl-2 mb-2">
+    <% for(let i=0; i < data.articles.length; i++) { if
+    (data.articles[i].attributes.block_id.data.attributes.Name==="form_homepage")
+    { %>
+    <div class="card mt-3">
+      <h5 class="card-header"><%= data.articles[i].attributes.Heading %></h5>
+      <% } } %>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+          <% for(let i=0; i<data.forms.length; i++) { for(let j=0;
+          j<data.forms[i].attributes.block_ids.data.length; j++) {
+          if(data.forms[i].attributes.block_ids.data[j].attributes.Name==="form_homepage")
+          {  if(data.forms[i].attributes.Input_type==="email" ||
+            data.forms[i].attributes.Input_type==="text" ||
+            data.forms[i].attributes.Input_type==="date" ||
+            data.forms[i].attributes.Input_type==="file" ||
+            data.forms[i].attributes.Input_type==="number" ||
+            data.forms[i].attributes.Input_type==="password") { %>
+            <label><%= data.forms[i].attributes.Field %></label>
+            <input
+              type="<%= data.forms[i].attributes.Input_type %>"
+              class="form-control"
+              placeholder="<%= data.forms[i].attributes.Placeholder %>"
+            />
+            <% } if(data.forms[i].attributes.Input_type==="dropdown"){ %>
+              <label><%= data.forms[i].attributes.Field %></label>
+              <select name="<%= data.forms[i].attributes.Field %>" style="width: 100%;">
+                <% for(let k=0; k<data.visaCard.length; k++) { %>
+                  <option value="<%= data.visaCard[k].attributes.Name %>"><%= data.visaCard[k].attributes.Name %></option>
+                  <% } %>
+              </select>
+            <% } if(data.forms[i].attributes.Input_type==="submit" || 
+            data.forms[i].attributes.Input_type==="reset") { %>
+            <button 
+            <% if(data.forms[i].attributes.Input_type==="submit"){ %>
+              class="btn btn-success mt-2"
+              <%} else {%>class="btn btn-danger mt-2"
+              <%}%> type="<%= data.forms[i].attributes.Input_type %>">
+              <%= data.forms[i].attributes.Field %>
+            </button>
+            <% } } } } %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-md-4">
+    <% for(let i=0; i < data.articles.length; i++) { if
+    (data.articles[i].attributes.block_id.data.attributes.Name==="side_links") {
+    %>
+    <div class="card mt-3">
+      <% if(data.articles[i].attributes.Heading) { %>
+      <h5 class="card-header"><%= data.articles[i].attributes.Heading %></h5>
+      <% } %>
+      <div class="card-body">
+        <% if(data.articles[i].attributes.Sub_heading) { %>
+        <h5 class="card-title">
+          <%= data.articles[i].attributes.Sub_heading %>
+        </h5>
+        <% } if(data.articles[i].attributes.Long_content) { %>
+        <p class="card-text"><%- data.articles[i].attributes.Long_content %></p>
+        <% } if(data.articles[i].attributes.Content) { %>
+        <p class="card-text"><%= data.articles[i].attributes.Content %></p>
+        <% } %>
+      </div>
+    </div>
+    <% } } %>
+  </div>
+  <div class="col-md-8">
+    <% for(let i=0; i < data.articles.length; i++) { if
+    (data.articles[i].attributes.block_id.data.attributes.Name==="main_content")
+    { %>
+    <div class="card mt-3">
+      <% if(data.articles[i].attributes.Heading) { %>
+      <h5 class="card-header"><%= data.articles[i].attributes.Heading %></h5>
+      <% } %>
+      <div class="card-body">
+        <% if(data.articles[i].attributes.Sub_heading) { %>
+        <h5 class="card-title">
+          <%= data.articles[i].attributes.Sub_heading %>
+        </h5>
+        <% } if(data.articles[i].attributes.Long_content) { %>
+        <p class="card-text"><%- data.articles[i].attributes.Long_content %></p>
+        <% } if(data.articles[i].attributes.Content) { %>
+        <p class="card-text"><%= data.articles[i].attributes.Content %></p>
+        <% } %>
+      </div>
+    </div>
+    <% } } %>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<nav class="navbar bg-body-tertiary bg-light">
+    <div>
+    <% for(let i=0; i<data.images.length; i++) { 
+    if(data.images[i].attributes.block_id.data.attributes.Name==='header_logo') { %>
+        <img
+        src="http://localhost:1337<%= data.images[i].attributes.image.data[0].attributes.url %>"
+        alt=""
+        style="width: 85px"
+        />
+        <% } } %>
+        
+    </div>
+    <div class="d-flex">
+        <% for(let i=0; i<data.menus.length; i++) { %>
+            <a href="<%= data.menus[i].attributes.Link %>" style="color: black; padding: 1vw;"><%= data.menus[i].attributes.Name %></a>
+            <% } %>
+        </div>
+    </nav>
