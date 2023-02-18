@@ -8,23 +8,28 @@
   />
   <% } } %>
 </div>
-<h1>Dubai Visa online</h1>
+<% for(let i=0; i < data.articles.length; i++) { if
+  (data.articles[i].attributes.block_id.data.attributes.Name==="homepage_title" &&
+  data.articles[i].attributes.page_id.data.attributes.Name==="dubai-visa-online")
+  { %>
+<h1><%= data.articles[i].attributes.Heading %></h1>
+<% }} %>
 <div class="row mt-3">
   <div class="col-md-8 col-lg-8 col-xl-4 mb-3" style="display: flex;
   flex-wrap: wrap;">
     <% for(let i=0; i < data.visaCard.length; i++) { if
     (data.visaCard[i].attributes.block_id.data.attributes.Name==="visa_package")
     { %>
-    <div class="col-sm-5 m-2">
+    <div class="col-sm-5 m-2" id="visaCard<%=i%>" onclick="cardSelect(<%=i%>)">
       <div class="card">
-        <h5 class="card-header">
+        <h5 class="card-header" id="cardHeader<%=i%>">
           <%= data.visaCard[i].attributes.visa_type.data.attributes.Name %>
         </h5>
         <div class="card-body">
-          <h5 class="card-title">
+          <h5 class="card-title" id="cardTitle<%=i%>">
             <%= data.visaCard[i].attributes.Duration %>
-            <span>₹<%= data.visaCard[i].attributes.Price %>*</span>
           </h5>
+          <div>₹<%= data.visaCard[i].attributes.Price %>*</div>
           <p class="card-text"><%- data.visaCard[i].attributes.Content %></p>
           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
         </div>
@@ -59,9 +64,9 @@
             />
             <% } if(data.forms[i].attributes.Input_type==="dropdown"){ %>
               <label><%= data.forms[i].attributes.Field %></label>
-              <select name="<%= data.forms[i].attributes.Field %>" style="width: 100%;">
+              <select id="articleDropdown" name="<%= data.forms[i].attributes.Field %>" style="width: 100%;">
                 <% for(let k=0; k<data.visaCard.length; k++) { %>
-                  <option value="<%= data.visaCard[k].attributes.Name %>"><%= data.visaCard[k].attributes.Name %></option>
+                  <option value="<%= data.visaCard[k].attributes.Name %>"><%= data.visaCard[k].attributes.Duration %> <%= data.visaCard[k].attributes.visa_type.data.attributes.Name %></option>
                   <% } %>
               </select>
             <% } if(data.forms[i].attributes.Input_type==="submit" || 
